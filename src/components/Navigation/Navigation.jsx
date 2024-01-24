@@ -8,7 +8,7 @@ const Navigation = () => {
   const token = useSelector(isAuthSelector) ?? '';
   return (
     <>
-          {!user && (
+          {user && (
             <nav>
               {token && (
                 <Link to="/contacts">

@@ -1,4 +1,8 @@
-import {api} from './api'
+import axios from 'axios';
+import { api } from './api'
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/'
+
 
 export const clearAuthHeader = () => {
   api.defaults.headers.Authorization = ''	
@@ -10,6 +14,7 @@ export const setAuthHeader = token => {
 
 export const signUpApi = async (body) => {
 	const { data } = await api.post('users/signup', body)
+	console.log(data);
 	return data
 }
 

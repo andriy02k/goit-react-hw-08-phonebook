@@ -8,8 +8,8 @@ export const handleIfReject = (state, { payload }) => {
 }
 
 export const handleIfFulfilled  = (state, { payload }) => {
-	  state.token = payload.token
     state.profile = payload.user
+	  state.token = payload.token
     state.isLoading = false
     state.error = null
 }

@@ -3,7 +3,9 @@ import { loginApi, refreshApi, signUpApi, logoutUser, clearAuthHeader, setAuthHe
 
 export const signUpThunk = createAsyncThunk('auth/signup', async (body, { rejectWithValue }) => {
 	try {
-		const { data } = await signUpApi(body)
+		const data = await signUpApi(body)
+		console.log(data);
+		setAuthHeader(data.token)
 		return data
 	} catch (error) {
 		return rejectWithValue(error.message)

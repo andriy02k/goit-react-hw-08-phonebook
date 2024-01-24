@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux'
 import { isAuthSelector } from '../../store/auth/selectors'
-import { Navigate, useLocation } from 'react-router-dom'
+import { Outlet, Navigate, useLocation } from 'react-router-dom'
 
 const PrivateRoute = ({ children }) => {
 	const isAuth = useSelector(isAuthSelector)
+	console.log(isAuth);
     const location = useLocation()
 
-	return isAuth ? children : <Navigate to='/login' state={location}/>
+	return isAuth ? <Outlet /> : <Navigate to='/login' state={location}/>
 }
 
 export default PrivateRoute

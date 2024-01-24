@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const RegistrationForm = ({ register }) => {
+	const navigate = useNavigate();
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const { name, email, password } = e.target.elements
 		register({ name: name.value, email: email.value, password: password.value })
+		navigate("/contacts")
 	}
 	return (
 		<div style={{ width: 500 }}>
