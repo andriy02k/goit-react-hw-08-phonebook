@@ -1,16 +1,50 @@
-import React from 'react'
-import Form from './Form/Form'
-import List from './List/List'
-import Filter from './Filter/Filter'
+import React, { Suspense, lazy, useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { refreshThunk } from 'store/auth/thunks'
+
+const Navigation = lazy(() => import('./Navigation/Navigation'))
+const PublicRoute = lazy(() => import('./guards/PublicRoute'))
+const RegistrationPage = lazy(() => import('pages/RegistrationPage'))
+const LoginPage = lazy(() => import('pages/LoginPage'))
+const ContactsPage = lazy(() => import('pages/ContactsPage'))
+const PrivateRoute = lazy(() => import('./guards/PrivateRoure'))
 
 export const App = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(refreshThunk());
+    }, [dispatch]);
   return (
     <>
-      <h1>Phonebook</h1>
-      <Form />
-      <h2>Contacts</h2>            
-      <Filter />
-      <List />
+      <Suspense fallback={<>loading...</>}>
+        <Navigation />
+        <Routes>
+          {/* <Route path="/" element={<PublicRoute />}>
+            <Route path="/signup" element={<RegistrationPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Route> */}
+          <Route
+						path='/login'
+						element={
+							<PublicRoute>
+								<LoginPage />
+							</PublicRoute>
+						}
+					/>
+					<Route
+						path='/signup'
+						element={
+							<PublicRoute>
+								<RegistrationPage />
+							</PublicRoute>
+						}
+					/>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/contacts" element={<ContactsPage />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   )
 }
