@@ -40,7 +40,7 @@ const LoginForm = ({ login }) => {
 					Login
 				</button>
 			</form>
-			<Link to='/signup'>Registration</Link>
+			{/* <Link to='/signup'>Registration</Link> */}
 		</div>
 	)
 }

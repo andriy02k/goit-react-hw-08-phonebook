@@ -48,7 +48,7 @@ const RegistrationForm = ({ register }) => {
 				<button type='submit' className='btn btn-primary'>
 					Registration
 				</button>
-				<Link to='/login'>Login</Link>
+				{/* <Link to='/login'>Login</Link> */}
 			</form>
 		</div>
 	)

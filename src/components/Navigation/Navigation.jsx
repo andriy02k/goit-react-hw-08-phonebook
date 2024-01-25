@@ -8,13 +8,13 @@ const Navigation = () => {
   const token = useSelector(isAuthSelector) ?? '';
   return (
     <>
-          {user && (
+          {token && (
+            <Link to="/contacts">
+                Contacts
+            </Link>
+          )}
+          {!user && (
             <nav>
-              {token && (
-                <Link to="/contacts">
-                  Contacts
-                </Link>
-              )}
               <Link to="/signup">
                 Sign Up
               </Link>

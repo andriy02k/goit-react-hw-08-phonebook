@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { refreshThunk } from 'store/auth/thunks'
 
@@ -43,6 +43,7 @@ export const App = () => {
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/contacts" element={<ContactsPage />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
     </>
