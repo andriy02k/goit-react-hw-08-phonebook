@@ -1,6 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { FormLabel, Button, Input, Box, useTheme } from '@chakra-ui/react';
 
 const RegistrationForm = ({ register }) => {
+	const theme = useTheme()
+
 	const navigate = useNavigate();
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -9,48 +12,40 @@ const RegistrationForm = ({ register }) => {
 		navigate("/contacts")
 	}
 	return (
-		<div style={{ width: 500 }}>
-			{/* <Link to='/'>Home</Link> */}
-
+		<Box>
 			<form onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor='exampleInputName' className='form-label'>
+				<div style={{marginBottom: "8px"}}>
+					<FormLabel style={{fontSize: "28px"}}>
 						Name
-					</label>
-					<input type='text' name='name' className='form-control' id='exampleInputName' />
+					</FormLabel>
+					<Input type='text' name='name' />
 				</div>
-				<div>
-					<label htmlFor='exampleInputEmail1' className='form-label'>
+				<div style={{marginBottom: "8px"}}>
+					<FormLabel style={{fontSize: "28px"}}>
 						Email address
-					</label>
-					<input
+					</FormLabel>
+					<Input
 						type='email'
 						name='email'
-						className='form-control'
-						id='exampleInputEmail1'
-						aria-describedby='emailHelp'
 					/>
-					<div id='emailHelp' className='form-text'>
+					<div style={{ color: theme.colors.secondary, fontSize: "14px" }}>
 						We'll never share your email with anyone else.
 					</div>
 				</div>
-				<div>
-					<label htmlFor='exampleInputPassword1' className='form-label'>
+				<div style={{marginBottom: "8px"}}>
+					<FormLabel style={{fontSize: "28px"}}>
 						Password
-					</label>
-					<input
+					</FormLabel>
+					<Input
 						name='password'
 						type='password'
-						className='form-control'
-						id='exampleInputPassword1'
 					/>
 				</div>
-				<button type='submit' className='btn btn-primary'>
+				<Button type='submit'>
 					Registration
-				</button>
-				{/* <Link to='/login'>Login</Link> */}
+				</Button>
 			</form>
-		</div>
+		</Box>
 	)
 }
 

@@ -1,16 +1,32 @@
 import Form from '../components/Form/Form';
 import Filter from '../components/Filter/Filter';
-import List from '../components/List/List';
+import ContactsList from '../components/List/List';
+import { Box, useTheme } from '@chakra-ui/react';
 
 const ContactsPage = () => {
+  const theme = useTheme()
   return (
-    <>
-      <h1>Phonebook</h1>
+    <Box style={{display: 'flex', flexDirection: 'column'}}>
+      <h1
+        style={{
+          color: theme.colors.primary,
+          fontSize: theme.fonts.sizes.large,
+          marginBottom: "12px"
+        }}>
+        Phonebook
+      </h1>
       <Form />
-      <h2>Contacts</h2>            
+      <h2
+        style={{
+          color: theme.colors.primary,
+          fontSize: theme.fonts.sizes.large,
+          marginBottom: "12px"
+        }}>
+        Contacts
+      </h2>            
       <Filter />
-      <List />
-    </>
+      <ContactsList />
+    </Box>
   );
 };
 

@@ -2,9 +2,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { dellContactsThunk } from '../../store/thunks';
 import { contactsSelector, filterSelector } from '../../store/selectors';
-import { Lists } from './List.styled'
+import { List, Button, useTheme } from '@chakra-ui/react';
 
-const List = () => {
+const ContactsList = () => {
+  const theme = useTheme()
   const contacts = useSelector(contactsSelector);
   const filter = useSelector(filterSelector);
   const dispatch = useDispatch();
@@ -22,15 +23,15 @@ const List = () => {
   const filteredContacts = filterContact();
     
   return (
-    <Lists>
+    <List>
           {filteredContacts.map(({ id, name, number }) => (
-              <li key={id}>
+              <li key={id} style={{fontSize: theme.fonts.sizes.medium, marginBottom: '4px'}}>
                   {name}: {number}
-                  <button onClick={() => removeContact(id)}>Delete</button>
+                  <Button onClick={() => removeContact(id)}>Delete</Button>
               </li>
           ))}
-    </Lists>
+    </List>
   )
 }
 
-export default List
+export default ContactsList

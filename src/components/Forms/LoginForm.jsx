@@ -1,47 +1,45 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { FormLabel, Button, Input, Box, useTheme } from '@chakra-ui/react';
 
 const LoginForm = ({ login }) => {
+	const theme = useTheme()
+	const navigate = useNavigate();
+
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const { email, password } = e.target.elements
 		login({ email: email.value, password: password.value })
+		navigate("/contacts")
 	}
 	return (
-		<div className='card p-5 mx-auto' style={{ width: 500 }}>
-			{/* <Link to='/'>Home</Link> */}
+		<Box>
 			<form onSubmit={handleSubmit}>
-				<div className='mb-3'>
-					<label htmlFor='exampleInputEmail1' className='form-label'>
+				<div style={{marginBottom: "8px"}}>
+					<FormLabel style={{fontSize: "28px"}}>
 						Email address
-					</label>
-					<input
+					</FormLabel>
+					<Input
 						type='email'
 						name='email'
-						className='form-control'
-						id='exampleInputEmail1'
-						aria-describedby='emailHelp'
 					/>
-					<div id='emailHelp' className='form-text'>
+					<Box style={{ color: theme.colors.secondary, fontSize: "14px" }}>
 						We'll never share your email with anyone else.
-					</div>
+					</Box>
 				</div>
-				<div className='mb-3'>
-					<label htmlFor='exampleInputPassword1' className='form-label'>
+				<div style={{marginBottom: "8px"}}>
+					<FormLabel style={{fontSize: "28px"}}>
 						Password
-					</label>
-					<input
+					</FormLabel>
+					<Input
 						name='password'
 						type='password'
-						className='form-control'
-						id='exampleInputPassword1'
 					/>
 				</div>
-				<button type='submit' className='btn btn-primary'>
+				<Button type='submit'>
 					Login
-				</button>
+				</Button>
 			</form>
-			{/* <Link to='/signup'>Registration</Link> */}
-		</div>
+		</Box>
 	)
 }
 

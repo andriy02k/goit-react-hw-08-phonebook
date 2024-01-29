@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addContactsThunk, getContactsThunk } from '../../store/thunks';
 import { contactsSelector } from '../../store/selectors';
-import css from './Form.module.css'
+import { FormLabel, Button, Input, useTheme } from '@chakra-ui/react';
 
 const Form = () => {
+  const theme = useTheme()
   const contacts = useSelector(contactsSelector);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -29,16 +30,16 @@ const Form = () => {
     }
   }
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.label}>
+    <form onSubmit={handleSubmit}>
+      <FormLabel>
         Name
-        <input className={css.input} type="text" name="name" value={name} onChange={handleChangeName} required />
-      </label>
-      <label className={css.label}>
+        <Input type="text" name="name" value={name} onChange={handleChangeName} required />
+      </FormLabel>
+      <FormLabel style={{fontSize: theme.fonts.sizes.medium, marginBottom: '12px'}}>
         Number
-        <input className={css.input} type="tel" name="number" value={number} onChange={handleChangeNumber} required />
-      </label>
-      <button className={css.btn} type="submit">Add contact</button>
+        <Input type="tel" name="number" value={number} onChange={handleChangeNumber} required />
+      </FormLabel>
+      <Button type="submit">Add contact</Button>
     </form>
   )
 }
