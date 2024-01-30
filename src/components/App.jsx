@@ -10,9 +10,7 @@ const PublicRoute = lazy(() => import('./guards/PublicRoute'))
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'))
 const LoginPage = lazy(() => import('pages/LoginPage'))
 const ContactsPage = lazy(() => import('pages/ContactsPage'))
-const PrivateRoute = lazy(() => import('./guards/PrivateRoure'))
-
-
+const PrivateRoute = lazy(() => import('./guards/PrivateRoute'))
 
 export const App = () => {
     const dispatch = useDispatch();
@@ -35,8 +33,7 @@ export const App = () => {
               />
             <Route
               path='/signup'
-              element={
-                <PublicRoute>
+              element={<PublicRoute>
                   <RegistrationPage />
                 </PublicRoute>
               }
