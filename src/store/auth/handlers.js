@@ -1,15 +1,16 @@
 export const handleIfPending = state => {
-  state.isLoading = true
-}
+  state.isLoading = true;
+};
 
 export const handleIfReject = (state, { payload }) => {
-  state.isLoading = false
-  state.error = payload
-}
+  state.isLoading = false;
+  state.error = payload;
+  console.error('Error during authentication:', payload);
+};
 
-export const handleIfFulfilled  = (state, { payload }) => {
-    state.profile = payload.user
-	  state.token = payload.token
-    state.isLoading = false
-    state.error = null
-}
+export const handleIfFulfilled = (state, { payload }) => {
+  state.profile = payload.user;
+  state.token = payload.token;
+  state.isLoading = false;
+  state.error = null;
+};

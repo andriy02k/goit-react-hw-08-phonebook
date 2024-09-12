@@ -1,8 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { getContactsThunk, addContactsThunk, dellContactsThunk } from '../store/thunks'
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  getContactsThunk,
+  addContactsThunk,
+  dellContactsThunk,
+} from '../store/thunks';
 
 const handlePaending = state => {
   state.isLoading = true;
+  state.error = null;
 };
 
 const handleReject = (state, { payload }) => {
@@ -10,32 +15,32 @@ const handleReject = (state, { payload }) => {
 };
 
 const initialState = {
-    items: [],
-    isLoading: false,
-    error: null,
-}
+  items: [],
+  isLoading: false,
+  error: null,
+};
 
 const contactSlice = createSlice({
-    name: 'contacts',
-    initialState,
-        extraReducers: (builder) => {
-            builder
-                .addCase(getContactsThunk.pending, handlePaending)
-                .addCase(getContactsThunk.rejected, handleReject)
-                .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
-                    state.items = payload
-                })
-                .addCase(addContactsThunk.pending, handlePaending)
-                .addCase(addContactsThunk.rejected, handleReject)
-                .addCase(addContactsThunk.fulfilled, (state, { payload }) => {
-                    state.items = [payload, ...state.items]
-                })
-                .addCase(dellContactsThunk.pending, handlePaending)
-                .addCase(dellContactsThunk.rejected, handleReject)
-                .addCase(dellContactsThunk.fulfilled, (state, { payload }) => {
-                    state.items = state.items.filter(item => item.id !== payload.id)
-                })
-	    },
+  name: 'contacts',
+  initialState,
+  extraReducers: builder => {
+    builder
+      .addCase(getContactsThunk.pending, handlePaending)
+      .addCase(getContactsThunk.rejected, handleReject)
+      .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
+        state.items = payload;
+      })
+      .addCase(addContactsThunk.pending, handlePaending)
+      .addCase(addContactsThunk.rejected, handleReject)
+      .addCase(addContactsThunk.fulfilled, (state, { payload }) => {
+        state.items = [payload, ...state.items];
+      })
+      .addCase(dellContactsThunk.pending, handlePaending)
+      .addCase(dellContactsThunk.rejected, handleReject)
+      .addCase(dellContactsThunk.fulfilled, (state, { payload }) => {
+        state.items = state.items.filter(item => item._id !== payload._id);
+      });
+  },
 });
 
 export const contactsReducer = contactSlice.reducer;
